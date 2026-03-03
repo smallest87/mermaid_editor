@@ -1,8 +1,9 @@
 # ui/main_window.py
-from PyQt6.QtWidgets import QMainWindow, QGraphicsView, QToolBar, QInputDialog
 from PyQt6.QtGui import QAction
-from .scene import DiagramScene
+from PyQt6.QtWidgets import QGraphicsView, QInputDialog, QMainWindow
+
 from .components import NodeItem
+from .scene import DiagramScene
 
 
 class DiagramEditor(QMainWindow):
