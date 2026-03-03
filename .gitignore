@@ -1,0 +1,40 @@
+# --- Python Specific ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.toast
+.lucid
+.pyre/
+
+# --- IDE & Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Project Specific Outputs ---
+# Kita mengabaikan hasil pengujian agar tidak mengotori repositori
+# Namun, folder storage/ (jika ada) bisa tetap dipertahankan
+*.json
+!models.json  # Jangan abaikan jika Anda punya file JSON konfigurasi tetap
+final_output.json
+test_output.json
+current_state.json
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
+
+# --- Distribution / Packaged ---
+dist/
+build/
+*.egg-info/
