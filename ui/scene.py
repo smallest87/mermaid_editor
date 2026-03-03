@@ -1,6 +1,7 @@
+# ui/scene.py
 from PyQt6.QtWidgets import QGraphicsScene, QInputDialog
 from PyQt6.QtCore import QLineF
-from .widgets import NodeItem, EdgeItem, TempEdgeItem
+from .components import NodeItem, EdgeItem, TempEdgeItem
 
 
 class DiagramScene(QGraphicsScene):
@@ -37,7 +38,7 @@ class DiagramScene(QGraphicsScene):
                 label, ok = QInputDialog.getText(self.parent(), "Label", "Keterangan:")
                 txt = label if ok else ""
                 self.service.add_connection(
-                    self.source_node.node_data.id, item.node_data.id, txt
+                    self.source_node.node_data.id, item.node_data.id, label=txt
                 )
                 edge = EdgeItem(self.source_node, item, txt)
                 self.addItem(edge)

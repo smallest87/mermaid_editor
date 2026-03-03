@@ -1,9 +1,8 @@
+# ui/main_window.py
 from PyQt6.QtWidgets import QMainWindow, QGraphicsView, QToolBar, QInputDialog
 from PyQt6.QtGui import QAction
 from .scene import DiagramScene
-from .widgets import NodeItem, EdgeItem
-from infrastructure.persistence import JSONRepository
-from infrastructure.converters import MermaidConverter
+from .components import NodeItem
 
 
 class DiagramEditor(QMainWindow):
@@ -43,7 +42,8 @@ class DiagramEditor(QMainWindow):
     def _add_node_dialog(self):
         txt, ok = QInputDialog.getText(self, "New", "Label:")
         if ok and txt:
-            node = self.service.add_node(f"N{len(self.service.state.nodes)}", txt)
+            node_id = f"N{len(self.service.state.nodes)}"
+            node = self.service.add_node(node_id, txt)
             item = NodeItem(node, self.service)
             self.scene.addItem(item)
             self.node_map[node.id] = item
@@ -53,9 +53,9 @@ class DiagramEditor(QMainWindow):
             item = NodeItem(n, self.service)
             self.scene.addItem(item)
             self.node_map[n.id] = item
-        # Logic untuk edges bisa ditambahkan di sini jika load dari file
 
     def closeEvent(self, event):
-        JSONRepository.save(self.service.state, "output.json")
-        print(MermaidConverter.to_mermaid(self.service.state))
+        self.service.save("output.json")
+        print("\n--- MERMAID CODE ---")
+        print(self.service.get_mermaid_code())
         event.accept()

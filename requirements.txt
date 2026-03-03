@@ -1,0 +1,8 @@
+# --- Core Dependencies ---
+PyQt6>=6.6.1
+pydantic>=2.6.1
+
+# --- Development & Quality Tools ---
+# Alat ini disertakan untuk menjaga standar PEP 8 Anda
+black>=24.2.0
+ruff>=0.2.2
